@@ -5,7 +5,7 @@ import SearchIcon from '@mui/icons-material/Search'
 import TuneIcon from '@mui/icons-material/Tune'
 import SettingsIcon from '@mui/icons-material/Settings'
 import AppsIcon from '@mui/icons-material/Apps'
-import QuestionMarkIcon from '@mui/icons-material/QuestionMark'
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 
 
 import './Header.css'
@@ -30,7 +30,7 @@ const Header = () => {
         </div>
         <div className='header__right'>
             <IconButton size={'small'}>
-                <QuestionMarkIcon />
+                <HelpOutlineIcon />
             </IconButton>
             <IconButton size={'small'}>
                 <SettingsIcon />
