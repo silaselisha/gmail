@@ -10,8 +10,8 @@ const SidebarOption = ({ title, Icon, number, active, Morevert}) => {
         <h3>{title}</h3>
         <p>{number}</p>
         {Morevert &&
-        <IconButton>
-            <Morevert />
+        <IconButton size='small'>
+            <Morevert fontSize='small' />
         </IconButton>}
     </div>
   )

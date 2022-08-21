@@ -39,7 +39,7 @@ const Header = () => {
                 <AppsIcon />
             </IconButton>
             <IconButton size={'small'}>
-                <Avatar/>
+                <Avatar />
             </IconButton>
         </div>
     </div>

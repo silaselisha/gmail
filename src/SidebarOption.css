@@ -46,3 +46,7 @@
     color: #c04b37;
     font-weight: 600 !important;
 }
+
+.sidebarOption > .MuiIconButton-root {
+    margin-left: 5px !important;
+}

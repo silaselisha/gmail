@@ -30,8 +30,8 @@ const Sidebar = () => {
         <div className='sidebarFooter'>
             <div className='sidebarFooter__label'>
                 <h2>Labels</h2>
-                <IconButton>
-                    <AddIcon />
+                <IconButton size='small'>
+                    <AddIcon fontSize='small' />
                 </IconButton>
             </div>
             <div className='sidebarFooter__icons'>
