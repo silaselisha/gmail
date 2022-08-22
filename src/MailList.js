@@ -1,5 +1,4 @@
-import React from 'react'
-import Button from '@mui/material/Button'
+import React, { useState, useEffect } from 'react'
 import IconButton from '@mui/material/IconButton'
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank'
 import RefreshIcon from '@mui/icons-material/Refresh'
@@ -15,8 +14,31 @@ import InfoIcon from '@mui/icons-material/Info'
 
 import Section from './Section'
 import './MailList.css'
+import EmailRow from './EmailRow'
+
+import { db, collection, query, onSnapshot, orderBy } from './firebase'
+
+
+
 
 const MailList = () => {
+  const [emails, setEmails] = useState([])
+  
+  useEffect(() => {
+    const data = []
+    const q = query(collection(db, 'emails'), orderBy('timestamp'))
+
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+       data.push(doc.data())
+      })
+
+      setEmails(() => (data))
+    })
+
+    return unsubscribe
+  }, [])
+
   return (
     <div className='mailList'>
         <div className='mailList__setting'>
@@ -60,6 +82,13 @@ const MailList = () => {
             <Section Icon={InboxIcon} title='Primary' active={true} color={'blue'} />
             <Section Icon={SellIcon} title='Promotions' color={'green'} />
             <Section Icon={InfoIcon} title='Updates' color={'orange'} />
+        </div>
+        <div className='emailList__list'>
+          {
+            emails.map((doc) => (
+              <EmailRow key={doc.timestamp} title={doc.to} subject={doc.subject} description={doc.message} time={new Date(doc.timestamp?.seconds * 1000).toUTCString() } />
+            ))
+          }
         </div>
     </div>
   )

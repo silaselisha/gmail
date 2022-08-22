@@ -1,4 +1,5 @@
 import React from 'react'
+import { useDispatch } from 'react-redux/es/hooks/useDispatch'
 import { Button } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 import CreateIcon from '@mui/icons-material/Create'
@@ -14,10 +15,13 @@ import LabelIcon from '@mui/icons-material/Label'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import './Sidebar.css'
 
+import { openSendMessage } from './features/mail/mailSlice'
+
 const Sidebar = () => {
+  const dispatch = useDispatch()
   return (
     <div className='sidebar'>
-        <Button startIcon={<CreateIcon fontSize={'large'}/>} className='sidebar__compose'>
+        <Button startIcon={<CreateIcon fontSize={'large'}/>} className='sidebar__compose' onClick={() => dispatch(openSendMessage())}>
             Compose
         </Button>
         <SidebarOption title={'Inbox'} Icon={InboxIcon} number={341} active={true} />
