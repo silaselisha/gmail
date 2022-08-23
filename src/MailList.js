@@ -26,7 +26,7 @@ const MailList = () => {
   
   useEffect(() => {
     const data = []
-    const q = query(collection(db, 'emails'), orderBy('timestamp'))
+    const q = query(collection(db, 'emails'), orderBy('timestamp', 'desc'))
 
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       querySnapshot.forEach((doc) => {

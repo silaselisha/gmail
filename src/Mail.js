@@ -18,10 +18,16 @@ import CloseIcon from '@mui/icons-material/Close'
 import PrintIcon from '@mui/icons-material/Print'
 import LaunchIcon from '@mui/icons-material/Launch'
 
+import { useSelector } from 'react-redux/es/exports'
+import { mailSelector } from './features/mail/mailSlice'
+
 import './Mail.css'
 
 const Mail = () => {
   const history = useHistory()
+  const { selectedMail } = useSelector(mailSelector)
+  // const { selectedMail: { title, subject, description, time} } = useSelector(mailSelector)
+  
 
   return (
     <div className='mail'>
@@ -82,7 +88,7 @@ const Mail = () => {
       <div className='mail__body'>
         <div className='mail__bodyHeader'>
           <div className='mail__bodyHeaderRight'>
-            <h2>Subject</h2>
+            <h2>{selectedMail?.subject}</h2>
             <Button size='small' endIcon={<CloseIcon />} className='mail__bodyHeaderIcon'>Inbox</Button>
           </div>
           <div className='mail__bodyHeaderLeft'>
@@ -93,6 +99,11 @@ const Mail = () => {
               <LaunchIcon fontSize='small' color='black' />
             </IconButton>
           </div>
+        </div>
+        <div className='mail__bodyMail'>
+          <p>{selectedMail?.description}</p>
+          
+          <span>{selectedMail?.time}</span>
         </div>
       </div>
     </div>

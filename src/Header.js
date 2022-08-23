@@ -7,10 +7,25 @@ import SettingsIcon from '@mui/icons-material/Settings'
 import AppsIcon from '@mui/icons-material/Apps'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 
+import { useDispatch } from 'react-redux/es/exports'
+import { useSelector } from 'react-redux/es/exports'
+import { userSelector } from './features/mail/userSlice'
+import { auth, signOut } from './firebase'
+import { loggedOut } from './features/mail/userSlice'
 
 import './Header.css'
 
 const Header = () => {
+  const dispatch = useDispatch()
+  const { user } = useSelector(userSelector)
+
+  const signedOut = () => {
+    signOut(auth).then(() => {
+        dispatch(loggedOut())
+    }).catch(err => {
+        return err
+    })
+  }
   return (
     <div className='header'>
         <div className='header__left'>
@@ -38,8 +53,8 @@ const Header = () => {
             <IconButton size={'small'}>
                 <AppsIcon />
             </IconButton>
-            <IconButton size={'small'}>
-                <Avatar />
+            <IconButton size={'small'} onClick={signedOut}>
+                <Avatar src={user?.photo}/>
             </IconButton>
         </div>
     </div>

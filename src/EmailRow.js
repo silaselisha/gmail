@@ -5,14 +5,30 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank'
 import StarBorderIcon from '@mui/icons-material/StarBorder'
 import LabelImportantIcon from '@mui/icons-material/LabelImportant'
 
+import { useDispatch } from 'react-redux'
+import { openMail } from './features/mail/mailSlice'
+
 import './EmailRow.css'
 
-const EmailRow = ({ title, subject, description, time, id }) => {
+const EmailRow = ({ title, subject, description, time }) => {
   const history =  useHistory()
+  const dispatch = useDispatch()
+
+  const openEmail = () => {
+
+    dispatch(openMail({
+        title,
+        subject,
+        description,
+        time
+    }))
+
+    history.push('/mail')
+  }
 
 
   return (
-    <div className='emailRow' onClick={() => history.push('/mail')}>
+    <div className='emailRow' onClick={openEmail}>
         <div className='emailRow__options'>
             <IconButton>
                 <CheckBoxOutlineBlankIcon />
